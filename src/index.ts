@@ -2,6 +2,7 @@ import { AwsClient } from 'aws4fetch';
 import { createMimeMessage } from 'mimetext/browser';
 
 export interface Env {
+  CF_VERSION_METADATA: WorkerVersionMetadata;
   ENVIRONMENT: string;
   AWS_SES_ACCESS_KEY_ID: string
   AWS_SES_SECRET_ACCESS_KEY: string
@@ -90,6 +91,8 @@ export default {
     const plaintext = "Hello, world!";
     const html = "<p>Hello, world!</p>";
 
+    const worker_user_agent = `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; modabot/${env.CF_VERSION_METADATA.id}; +https://www.ai.moda/en/contact)`;
+
     const new_email = createMimeMessage();
 
     new_email.setSender({
@@ -157,7 +160,8 @@ export default {
       {
         body: JSON.stringify(body),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'User-Agent': worker_user_agent,
         },
       }).then(async (res) => {
         if(!res.ok) {
