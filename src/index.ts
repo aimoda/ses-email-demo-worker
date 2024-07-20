@@ -136,7 +136,6 @@ export default {
     const SES_API = `https://email.${env.AWS_SES_REGION}.amazonaws.com/v2/email/outbound-emails`;
 
     const body = {
-      ConfigurationSetName: "default-config-set",
       Content: {
         Raw: {
           Data: utf8ToBase64(new_email.asRaw())
