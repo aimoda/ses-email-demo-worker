@@ -14,6 +14,9 @@
 					"ses:Recipients": [
 						"*@ses-email-demo-worker.testing.email.ai.moda"
 					]
+				},
+				"Bool": {
+					"aws:SecureTransport": "true"
 				}
 			}
 		}
