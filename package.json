@@ -1,0 +1,18 @@
+{
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"deploy": "wrangler deploy -e production src/index.ts",
+		"dev": "wrangler dev src/index.ts --test-scheduled",
+		"tunnel": "cloudflared tunnel --url http://localhost:61023"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240529.0",
+		"typescript": "^5.5.3",
+		"wrangler": "^3.65.0"
+	},
+	"dependencies": {
+		
+	}
+}
