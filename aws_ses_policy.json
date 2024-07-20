@@ -7,6 +7,7 @@
 			"Resource": "*",
 			"Condition": {
 				"StringEquals": {
+					"ses:FromDisplayName": "modabot",
 					"ses:FromAddress": "modabot@ai.moda",
 					"ses:ApiVersion": "2"
 				},
