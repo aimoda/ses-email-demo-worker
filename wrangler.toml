@@ -10,6 +10,8 @@ port = 61023
 
 [vars]
 ENVIRONMENT = "dev"
+AWS_SES_REGION = "us-east-2"
+
 
 [env.production]
 name = "ses-email-demo-worker"
@@ -18,6 +20,7 @@ logpush = true
 
 [env.production.vars]
 ENVIRONMENT = "production"
+AWS_SES_REGION = "us-east-2"
 
 [env.production.triggers]
 crons = [ "4 * * * *" ]
