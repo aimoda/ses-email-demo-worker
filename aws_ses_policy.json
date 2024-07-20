@@ -7,7 +7,7 @@
 			"Resource": "*",
 			"Condition": {
 				"StringEquals": {
-					"ses:FromAddress": "modabot@ses-email-demo-worker.testing.email.ai.moda",
+					"ses:FromAddress": "modabot@ai.moda",
 					"ses:ApiVersion": "2"
 				},
 				"ForAllValues:StringLike": {

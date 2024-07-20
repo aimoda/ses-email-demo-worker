@@ -97,7 +97,7 @@ export default {
 
     new_email.setSender({
       name: "modabot",
-      addr: "modabot@ses-email-demo-worker.testing.email.ai.moda"
+      addr: "modabot@ai.moda"
     });
 
     new_email.setTo({
