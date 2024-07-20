@@ -1,0 +1,21 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": "ses:SendRawEmail",
+			"Resource": "*",
+			"Condition": {
+				"StringEquals": {
+					"ses:FromAddress": "modabot@ses-email-demo-worker.testing.email.ai.moda",
+					"ses:ApiVersion": "2"
+				},
+				"ForAllValues:StringLike": {
+					"ses:Recipients": [
+						"*@ses-email-demo-worker.testing.email.ai.moda"
+					]
+				}
+			}
+		}
+	]
+}
