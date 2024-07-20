@@ -95,14 +95,14 @@ export default {
     new_email.setSender({
       name: "modabot",
       addr: "modabot@ses-email-demo-worker.testing.email.ai.moda"
-    })
+    });
 
     new_email.setTo({
       name: "David Manouchehri",
       addr: destination
-    })
+    });
 
-    new_email.setSubject(subject)
+    new_email.setSubject(subject);
 
     if(plaintext) {
       const canBe7bit = is7BitWithLineLengthLimit(plaintext);
@@ -131,10 +131,11 @@ export default {
       secretAccessKey: env.AWS_SES_SECRET_ACCESS_KEY,
       service: 'ses',
       retries: 0,
-    })
+    });
 
     const SES_API = `https://email.${env.AWS_SES_REGION}.amazonaws.com/v2/email/outbound-emails`;
 
+    // https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html
     const body = {
       Content: {
         Raw: {
@@ -150,7 +151,7 @@ export default {
           Value: "SES_EMAIL_DEMO_WORKER"
         }
       ],
-    }
+    };
 
     const ses_prom = aws_client.fetch(SES_API,
       {
@@ -160,13 +161,18 @@ export default {
         },
       }).then(async (res) => {
         if(!res.ok) {
-          console.error(`SES response not ok: ${res.status}`)
+          console.error(`SES response not ok: ${res.status}`);
           if(res.body) {
-            console.error(`SES response body: ${await res.text()}`)
+            console.error(`SES response body: ${await res.text()}`);
           }
-          throw new Error(`SES response not ok: ${res.status}`)
+          throw new Error(`SES response not ok: ${res.status}`);
         }
-      })
+        else {
+          console.debug(`SES response ok: ${res.status}`);
+          const res_json = await res.json();
+          console.debug(`SES response body: ${JSON.stringify(res_json)}`);
+        }
+      });
 
     ctx.waitUntil(ses_prom);
 
