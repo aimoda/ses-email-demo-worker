@@ -11,6 +11,7 @@ port = 61023
 [vars]
 ENVIRONMENT = "dev"
 AWS_SES_REGION = "us-east-2"
+AWS_SES_ACCESS_KEY_ID = "AKIAU4LS5J4FTN55FA77"
 
 [version_metadata]
 binding = "CF_VERSION_METADATA"
@@ -24,6 +25,8 @@ logpush = true
 [env.production.vars]
 ENVIRONMENT = "production"
 AWS_SES_REGION = "us-east-2"
+AWS_SES_ACCESS_KEY_ID = "AKIAU4LS5J4FRSTPFHHP"
+# wrangler secret put -e production AWS_SES_SECRET_ACCESS_KEY
 
 [env.production.triggers]
 crons = [ "4 * * * *" ]
